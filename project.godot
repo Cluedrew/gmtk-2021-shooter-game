@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Bullet Game"
+run/main_scene="res://BasicLevel.tscn"
 config/icon="res://icon.png"
 
 [physics]

@@ -13,3 +13,6 @@ position = Vector2( 74.5661, 77.3977 )
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="Node"]
+wait_time = 0.5

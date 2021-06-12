@@ -33,3 +33,4 @@ projectileSpeed = 750
 
 [node name="HomingLauncher" parent="." instance=ExtResource( 4 )]
 fireDelay = 2.0
+homingPower = 2

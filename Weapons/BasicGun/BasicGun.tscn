@@ -56,5 +56,3 @@ projectileScene = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 z_index = 2
 frames = SubResource( 8 )
-frame = 1
-playing = true

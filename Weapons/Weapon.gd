@@ -6,12 +6,17 @@ export var projectileSpeed = 750
 export(PackedScene) var projectileScene
 
 var cFireDelay = fireDelay
+onready var frameCount = $AnimatedSprite.frames.get_frame_count("default")
 
 func _process(delta):
-	cFireDelay -= delta;
+	cFireDelay -= delta
 	if (cFireDelay <= 0):
 		FireWeapon();
 		cFireDelay = fireDelay;
+		
+	var chargePercentage = 1 - (cFireDelay / fireDelay)
+	$AnimatedSprite.frame = floor(chargePercentage * frameCount)
+	
 		
 func FireWeapon():
 	pass;

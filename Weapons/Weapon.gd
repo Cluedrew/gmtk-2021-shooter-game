@@ -1,8 +1,9 @@
 extends Node2D
 
-export var projectileSpeed = 30;
-export var fireDelay = 0.2;
-export(PackedScene) var projectileScene;
+export var damage = 1
+export var fireDelay = 0.2
+export var projectileSpeed = 750
+export(PackedScene) var projectileScene
 
 var cFireDelay = fireDelay
 
@@ -21,4 +22,5 @@ func AddProjectile(target):
 	proj.position = get_parent().get_position();
 	proj.speed = projectileSpeed;
 	proj.direction = proj.position.direction_to(target);
+	proj.damage = damage
 	return proj;

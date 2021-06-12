@@ -14,7 +14,9 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=2]
 radius = 6.63382
 
-[node name="Projectile" type="KinematicBody2D"]
+[node name="Projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -26,4 +28,5 @@ shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

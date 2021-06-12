@@ -12,7 +12,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 13.0
+radius = 61.0328
 
 [node name="Grunt" type="Area2D"]
 collision_layer = 8

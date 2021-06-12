@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Images/mainship.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://Weapons/BasicGun/BasicGun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Weapons/HomingLauncher/HomingLauncher.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -27,4 +28,7 @@ frames = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="BasicGun" parent="." instance=ExtResource( 3 )]
-fireDelay = 20.0
+fireDelay = 2.0
+projectileSpeed = 750
+
+[node name="HomingLauncher" parent="." instance=ExtResource( 4 )]

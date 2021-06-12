@@ -10,6 +10,8 @@ signal out_of_health
 func _process(delta: float):
 	var velocity: Vector2 = position.direction_to(player.position)
 	position += velocity * delta * speed
+	var angle = atan2(position.x - player.position.x, position.y-player.position.y)
+	rotation_degrees = -rad2deg(angle)
 
 func get_player():
 	# Brittle, must be a sibling of the Player.

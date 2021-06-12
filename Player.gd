@@ -2,7 +2,7 @@ extends Area2D
 
 
 # Declare member variables here. Examples:
-onready var speed = 20
+onready var speed = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,5 +19,5 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized()
 	position += velocity * delta * speed

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/IsometricDiamond.png-476d45538de6f54ae2929c5c12a2ff52.stex"
+path="res://.import/Capsule.png-efa531ce81293c344194199921cd5d72.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IsometricDiamond.png"
-dest_files=[ "res://.import/IsometricDiamond.png-476d45538de6f54ae2929c5c12a2ff52.stex" ]
+source_file="res://Images/Capsule.png"
+dest_files=[ "res://.import/Capsule.png-efa531ce81293c344194199921cd5d72.stex" ]
 
 [params]
 

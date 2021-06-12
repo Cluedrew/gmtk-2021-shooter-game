@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Capsule.png-cda90523d9190cefbc4cf48df49be94b.stex"
+path="res://.import/HexagonFlat-Top.png-5bda917b2046ff1481b9fc3dbd69f3a5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Capsule.png"
-dest_files=[ "res://.import/Capsule.png-cda90523d9190cefbc4cf48df49be94b.stex" ]
+source_file="res://Images/HexagonFlat-Top.png"
+dest_files=[ "res://.import/HexagonFlat-Top.png-5bda917b2046ff1481b9fc3dbd69f3a5.stex" ]
 
 [params]
 

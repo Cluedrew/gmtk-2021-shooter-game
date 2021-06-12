@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HexagonPointed-Top.png-eae11da6fab7130997109a8f73ff7e91.stex"
+path="res://.import/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://HexagonPointed-Top.png"
-dest_files=[ "res://.import/HexagonPointed-Top.png-eae11da6fab7130997109a8f73ff7e91.stex" ]
+source_file="res://Images/Circle.png"
+dest_files=[ "res://.import/Circle.png-c6367644dfe9e873ba9cd21dc651e9f9.stex" ]
 
 [params]
 

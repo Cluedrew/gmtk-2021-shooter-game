@@ -28,7 +28,8 @@ frames = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="BasicGun" parent="." instance=ExtResource( 3 )]
-fireDelay = 2.0
+fireDelay = 0.8
 projectileSpeed = 750
 
 [node name="HomingLauncher" parent="." instance=ExtResource( 4 )]
+fireDelay = 2.0

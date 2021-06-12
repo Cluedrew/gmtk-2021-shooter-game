@@ -19,7 +19,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Projectile_area_entered(area):
-	print(area.name)
 	area.apply_damage(damage)
 	queue_free()
 	pass

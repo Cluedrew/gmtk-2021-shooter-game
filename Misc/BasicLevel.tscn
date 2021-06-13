@@ -15,4 +15,10 @@ script = ExtResource( 3 )
 wait_time = 2.0
 autostart = true
 
+[node name="Timer2" type="Timer" parent="Data"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="Data/Timer" to="Data" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer_timeout"]

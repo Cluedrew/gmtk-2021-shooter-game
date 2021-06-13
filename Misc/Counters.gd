@@ -13,6 +13,7 @@ class SideData:
 		offset = offset_
 
 const Grunt = preload("res://Enemy/Grunt.tscn")
+const Charger = preload("res://Enemy/Charger.tscn")
 #const Charger = preload(...)
 const GRUNT_ID := 0
 const CHARGER_ID := 0
@@ -41,6 +42,16 @@ func register_grunt(grunt):
 func _on_grunt_decrement():
 	grunt_count -= 1
 	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
+	
+func register_charger(charger):
+	charger_count += 1
+	charger.connect("out_of_health", self, "_on_charger_decrement",
+			[], CONNECT_ONESHOT)
+	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
+
+func _on_charger_decrement():
+	charger_count -= 1
+	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
 
 func get_random_spawn_point(distance: float = 0) -> Vector2:
 	var side_index: int = rng.randi_range(0, 3)
@@ -55,3 +66,9 @@ func _on_Timer_timeout():
 	grunt.position = get_random_spawn_point(16)
 	get_parent().add_child(grunt)
 	register_grunt(grunt)
+
+func _on_Timer2_timeout():
+	var charger := Charger.instance()
+	charger.position = get_random_spawn_point(16)
+	get_parent().add_child(charger)
+	register_charger(charger)

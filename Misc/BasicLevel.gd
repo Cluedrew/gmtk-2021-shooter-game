@@ -11,13 +11,16 @@ func _ready():
 		print("connect failed: ", err)
 
 # TODO: pretty this up.
-onready var health_label = $Label
+var health_label: Label
 var max_player_health = 0
 var cur_player_health = 0
 var max_boss_health = 0
 var cur_boss_health = 0
 
 func update_health_label():
+	if null == health_label:
+		health_label = $HealthLabel
+		assert(health_label)
 	var text = """
 	Player Health: {pc}/{pm}
 	Boss Health: {bc}/{bm}

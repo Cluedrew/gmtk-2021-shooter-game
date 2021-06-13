@@ -28,10 +28,13 @@ frames = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="BasicGun" parent="." instance=ExtResource( 3 )]
+damage = 2
+fireDelayMult = 3
 projectileSpeed = 750
 
 [node name="HomingLauncher" parent="." instance=ExtResource( 4 )]
-fireDelayMult = 3
+damage = 2
+fireDelayMult = 5
 homingPower = 2
 
 [node name="FlashTimer" type="Timer" parent="."]
@@ -44,5 +47,5 @@ one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
-[connection signal="timeout" from="InvincibleTimer" to="." method="_on_FlashTimer_timeout"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_InvincibleTimer_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_FlashTimer_timeout"]

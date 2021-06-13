@@ -30,6 +30,15 @@ func FireWeapon():
 	
 func UpdateParamsFromEnemyCount(_enemyCounts):
 	pass;
+	
+func UpdateFireRateFromEnemyCount(enemyCount):
+	if (enemyCount <= 0):
+		fireDelay = 99999
+		cFireDelay = 99999
+	else:
+		fireDelay = fireDelayMult*1.0/ (enemyCount * enemyCount)
+		cFireDelay = min(cFireDelay,fireDelay)
+	pass;
 
 func AddProjectile(target):
 	var proj = projectileScene.instance();

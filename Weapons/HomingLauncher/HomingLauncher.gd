@@ -4,13 +4,7 @@ export var homingPower = 1
 
 func UpdateParamsFromEnemyCount(enemyCounts):
 	var enemyCount = enemyCounts[1]
-	if (enemyCount <= 0):
-		fireDelay = 99999
-		cFireDelay = 99999
-	else:
-		fireDelay = fireDelayMult*1.0/ (enemyCount)
-		cFireDelay = min(cFireDelay,fireDelay)
-	pass;
+	UpdateFireRateFromEnemyCount(enemyCount)
 
 func FireWeapon():
 	AddProjectile(get_parent().position + Vector2(-1,-1))

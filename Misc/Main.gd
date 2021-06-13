@@ -4,9 +4,27 @@ extends Node
 const StartMenu = preload("res://Misc/StartMenu.tscn")
 const BasicLevel = preload("res://Misc/BasicLevel.tscn")
 
+var scene
+
 func _ready():
-	add_child(StartMenu.instance())
+	scene = StartMenu.instance()
+	add_child(scene)
 
 func begin_level():
-	remove_child(get_child(0))
-	add_child(BasicLevel.instance())
+	change_scene(BasicLevel)
+
+func change_scene(new_scene: PackedScene):
+	if null == new_scene:
+		print("change_scene, not a PackedScene.")
+	else:
+		scene.queue_free()
+		scene = new_scene.instance()
+		add_child(scene)
+
+func connect_to_change_scene(
+		source: Object, signal_name: String, new_scene: PackedScene):
+	var err := source.connect(signal_name, self, "change_scene",
+			[new_scene], CONNECT_ONESHOT)
+	if OK != err:
+		print("connect_to_change_scene failed: ", err)
+	return err

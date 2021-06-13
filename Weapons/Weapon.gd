@@ -1,6 +1,7 @@
 extends Node2D
 
 export var damage = 1
+export var fireDelayMult = 1
 export var projectileSpeed = 750
 export(PackedScene) var projectileScene
 

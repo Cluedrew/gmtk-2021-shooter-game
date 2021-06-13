@@ -8,7 +8,7 @@ func UpdateParamsFromEnemyCount(enemyCounts):
 		fireDelay = 99999
 		cFireDelay = 99999
 	else:
-		fireDelay = 3.0 / (enemyCount)
+		fireDelay = fireDelayMult*1.0/ (enemyCount)
 		cFireDelay = min(cFireDelay,fireDelay)
 	pass;
 

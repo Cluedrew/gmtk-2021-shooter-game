@@ -13,7 +13,7 @@ func start_timer():
 	var err = timer.connect("timeout", self, "_on_Timer_timeout")
 	if err != OK:
 		print("connect failed ", err)
-	timer.start(1.0)
+	timer.start(0.2)
 
 func _on_Timer_timeout():
 	queue_free()

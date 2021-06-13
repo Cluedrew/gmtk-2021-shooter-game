@@ -3,7 +3,8 @@ extends Area2D
 
 # Declare member variables here. Examples:
 onready var speed = 400
-export var health = 5
+export var max_health = 5
+var health = max_health
 var invincible = false
 var isFlashingWhite = false
 
@@ -13,7 +14,7 @@ signal out_of_health
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("/root/Main/Level").set_player_heath(health,max_health)
 
 func _process(delta):
 	var velocity = Vector2()  # The player's movement vector.
@@ -41,6 +42,7 @@ func _on_Player_area_entered(area):
 	if (!invincible):
 		area.apply_damage(10)
 		health -= 1
+		get_node("/root/Main/Level").set_player_heath(health,max_health)
 		if (health <= 0):
 			emit_signal("out_of_health")
 		else:

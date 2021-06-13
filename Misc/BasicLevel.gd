@@ -22,12 +22,12 @@ func update_health_label():
 	Player Health: {pc}/{pm}
 	Boss Health: {bc}/{bm}
 	"""
-	health_label.text(text.format({
+	health_label.text = text.format({
 		"pc": cur_player_health,
 		"pm": max_player_health,
 		"bc": cur_boss_health,
 		"bm": max_boss_health,
-	}))
+	})
 
 func set_player_heath(cur_health, max_health):
 	cur_player_health = cur_health

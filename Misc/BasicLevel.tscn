@@ -6,7 +6,7 @@
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 74.5661, 77.3977 )
+position = Vector2( 960, 540 )
 
 [node name="Data" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -20,5 +20,5 @@ wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="Data/Timer" to="Data" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]

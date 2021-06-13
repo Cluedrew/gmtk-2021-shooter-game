@@ -10,8 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Bullet Game"
-run/main_scene="res://Misc/BasicLevel.tscn"
+config/name="Proportionate Response"
+run/main_scene="res://Misc/Main.tscn"
 config/icon="res://icon.png"
 
 [display]

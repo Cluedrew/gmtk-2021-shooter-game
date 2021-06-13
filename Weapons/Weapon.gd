@@ -1,12 +1,16 @@
 extends Node2D
 
 export var damage = 1
-export var fireDelay = 0.2
 export var projectileSpeed = 750
 export(PackedScene) var projectileScene
 
+var fireDelay = 9999
 var cFireDelay = fireDelay
 onready var frameCount = $AnimatedSprite.frames.get_frame_count("default")
+var enemyType = 0
+
+func _ready():
+	get_node("/root/Node2D/Node").connect("enemy_counts_changed",self,"UpdateParamsFromEnemyCount")
 
 func _process(delta):
 	cFireDelay -= delta
@@ -19,6 +23,9 @@ func _process(delta):
 	
 		
 func FireWeapon():
+	pass;
+	
+func UpdateParamsFromEnemyCount(enemyCounts):
 	pass;
 
 func AddProjectile(target):

@@ -27,7 +27,8 @@ func _process(delta):
 			face_player()
 			move_toward_player(delta)
 			if position.distance_to(get_player().position) < closeEnoughToDashDistance:
-				change_state(charger_state.Turn)
+				# tick down stateTimer faster if we're close to player
+				stateTimer -= delta
 		charger_state.Turn:
 			move_toward_player(delta, -0.5)
 			face_player()

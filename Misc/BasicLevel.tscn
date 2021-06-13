@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Misc/BasicLevel.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Misc/Counters.gd" type="Script" id=3]
 [ext_resource path="res://Enemy/Boss.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/InfoFont.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -32,12 +33,20 @@ curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 930.582, 116.253 )
-rotation = 3.02148
+rotation = 3.02893
 
 [node name="Boss" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
 position = Vector2( 0.352783, 0.480713 )
 rotation = 1.5708
 
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="Data/Timer" to="Data" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]
 [connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]

@@ -5,6 +5,8 @@ onready var player: Area2D = get_player()
 export var max_health = 10
 onready var cur_health = max_health
 
+const explosionScene = preload("res://AnimatedEffects/ShipExplosion.tscn")
+
 signal out_of_health
 
 func move_toward_player(delta,speedMult=1):
@@ -22,4 +24,8 @@ func apply_damage(damage: int):
 	cur_health -= clamp(damage, 0, cur_health)
 	if 0 == cur_health:
 		emit_signal("out_of_health")
+		var expl := explosionScene.instance()
+		expl.position = position
+		get_node("/root").add_child(expl)
+		expl.play("default")
 		set_script(preload("res://Enemy/DyingEnemy.gd"))

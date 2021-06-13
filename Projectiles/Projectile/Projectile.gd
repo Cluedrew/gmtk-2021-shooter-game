@@ -1,5 +1,7 @@
 extends Area2D
 
+export(PackedScene) var explosionScene
+export var explosionAnimName = "default"
 var speed;
 var direction = Vector2();
 var damage;
@@ -30,5 +32,9 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Projectile_area_entered(area):
 	area.apply_damage(damage)
+	var expl = explosionScene.instance()
+	expl.position = position
+	get_node("/root").add_child(expl)
+	expl.play(explosionAnimName)
 	queue_free()
 	pass

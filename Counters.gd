@@ -1,5 +1,7 @@
 extends Node
 
+signal enemy_counts_changed(counts)
+
 class SideData:
 	var begin: Vector2
 	var end: Vector2
@@ -11,10 +13,14 @@ class SideData:
 		offset = offset_
 
 const Grunt = preload("res://Enemy/Grunt.tscn")
+#const Charger = preload(...)
+const GRUNT_ID := 0
+const CHARGER_ID := 0
 
 var rng := RandomNumberGenerator.new()
 
-onready var grunt_count := 0
+var grunt_count := 0
+var charger_count := 0
 onready var view_size: Vector2 = get_viewport().size
 onready var sides := [
 	SideData.new(Vector2(), Vector2(view_size.x, 0), Vector2(-1, 0)),
@@ -28,11 +34,13 @@ func _ready():
 
 func register_grunt(grunt):
 	grunt_count += 1
-	grunt.connect("out_of_health", self, "_on_grunt_count",
+	grunt.connect("out_of_health", self, "_on_grunt_decrement",
 			[], CONNECT_ONESHOT)
+	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
 
 func _on_grunt_decrement():
 	grunt_count -= 1
+	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
 
 func get_random_spawn_point(distance: float = 0) -> Vector2:
 	var side_index: int = rng.randi_range(0, 3)

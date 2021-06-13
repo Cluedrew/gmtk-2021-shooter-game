@@ -32,3 +32,5 @@ projectileSpeed = 750
 
 [node name="HomingLauncher" parent="." instance=ExtResource( 4 )]
 homingPower = 2
+
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]

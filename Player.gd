@@ -5,6 +5,8 @@ extends Area2D
 onready var speed = 400
 export var health = 5
 
+onready var screensize = get_viewport_rect().size
+
 signal out_of_health
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,8 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized()
 	position += velocity * delta * speed
+	position.x = clamp(position.x, 0, screensize.x)
+	position.y = clamp(position.y, 0, screensize.y)
 
 
 func _on_Player_area_entered(area):

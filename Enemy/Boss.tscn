@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Images/boss.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Boss.gd" type="Script" id=2]
+[ext_resource path="res://Images/thruster.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -95,6 +96,29 @@ animations = [ {
 radius = 83.6478
 height = 148.731
 
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 20, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 20, 20 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
 [node name="Boss" type="Area2D"]
 collision_layer = 8
 collision_mask = 7
@@ -105,8 +129,24 @@ max_health = 1000
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 17 )
-frame = 22
+frame = 25
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 18 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( -46.2296, 203.906 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 24 )
+frame = 1
+playing = true
+offset = Vector2( -3.64159, 6.27346 )
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+position = Vector2( 61.8923, 203.906 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 24 )
+frame = 3
+playing = true
+offset = Vector2( -3.64159, 6.27346 )

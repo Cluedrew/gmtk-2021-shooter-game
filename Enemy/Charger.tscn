@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemy/Charger.gd" type="Script" id=1]
 [ext_resource path="res://Images/enemy1.png" type="Texture" id=2]
+[ext_resource path="res://Images/thruster.png" type="Texture" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -13,6 +14,29 @@ animations = [ {
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 50.01
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 20, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 20, 20 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
 
 [node name="Charger" type="Area2D"]
 collision_layer = 8
@@ -26,3 +50,21 @@ frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( -14.8024, 66.2838 )
+frames = SubResource( 8 )
+frame = 3
+playing = true
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0476685, 66.7844 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 8 )
+playing = true
+
+[node name="AnimatedSprite4" type="AnimatedSprite" parent="."]
+position = Vector2( 15.0646, 66.2838 )
+frames = SubResource( 8 )
+frame = 3
+playing = true

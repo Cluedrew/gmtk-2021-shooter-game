@@ -1,7 +1,6 @@
 extends Area2D
 
 export(PackedScene) var explosionScene
-export var explosionAnimName = "default"
 var speed;
 var direction = Vector2();
 var damage;
@@ -35,6 +34,6 @@ func _on_Projectile_area_entered(area):
 	var expl = explosionScene.instance()
 	expl.position = position
 	get_node("/root").add_child(expl)
-	expl.play(explosionAnimName)
+	expl.play("default")
 	queue_free()
 	pass

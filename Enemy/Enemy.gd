@@ -19,7 +19,7 @@ func get_player():
 	return get_node("../Player")
 
 func apply_damage(damage: int):
-	cur_health -= clamp(0, damage, max_health)
+	cur_health -= clamp(damage, 0, cur_health)
 	if 0 == cur_health:
 		emit_signal("out_of_health")
 		set_script(preload("res://Enemy/DyingEnemy.gd"))

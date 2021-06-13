@@ -4,6 +4,8 @@ extends Area2D
 # Declare member variables here. Examples:
 onready var speed = 400
 export var health = 5
+var invincible = false
+var isFlashingWhite = false
 
 onready var screensize = get_viewport_rect().size
 
@@ -28,10 +30,29 @@ func _process(delta):
 	position += velocity * delta * speed
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
+	
+	if (isFlashingWhite && invincible):
+		 $AnimatedSprite.modulate = Color(1,1,1,0)
+	else:
+		$AnimatedSprite.modulate = Color(1,1,1,1)
 
 
 func _on_Player_area_entered(area):
-	area.apply_damage(100)
-	health -= 1
-	if (health <= 0):
-		emit_signal("out_of_health")
+	if (!invincible):
+		area.apply_damage(100)
+		health -= 1
+		if (health <= 0):
+			emit_signal("out_of_health")
+		else:
+			$CollisionShape2D.set_disabled(true)
+			invincible = true
+			$InvincibleTimer.start()
+		
+
+func _on_FlashTimer_timeout():
+	isFlashingWhite = !isFlashingWhite
+	
+
+func _on_InvincibleTimer_timeout():
+	$CollisionShape2D.set_disabled(false)
+	invincible = false

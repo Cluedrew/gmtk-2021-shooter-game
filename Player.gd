@@ -39,7 +39,7 @@ func _process(delta):
 
 func _on_Player_area_entered(area):
 	if (!invincible):
-		area.apply_damage(100)
+		area.apply_damage(10)
 		health -= 1
 		if (health <= 0):
 			emit_signal("out_of_health")

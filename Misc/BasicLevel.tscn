@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Misc/BasicLevel.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Misc/Counters.gd" type="Script" id=3]
+[ext_resource path="res://Enemy/Boss.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 930.582, 116.253, 82.4975, -11.4853, -82.4975, 11.4853, 654.686, 149.551, 72, -37, -72, 37, 402.574, 204.255, 45, -57, -45, 57, 288.41, 299.391, 35, -59, -35, 59, 205.166, 418.312, 0, 0, 0, 0, 171.868, 556.26, 1, -55, -1, 55, 167.111, 653.775, -7, -57, 7, 57, 171.868, 765.56, -61, -40, 61, 40, 247.977, 855.94, -44, -12, 44, 12, 355.006, 915.401, -169, -13, 169, 13, 616.631, 965.347, -128, 7, 128, -7, 961.501, 967.726, -60, 4, 60, -4, 1163.67, 948.698, -95, 18, 95, -18, 1451.45, 929.671, 0, 0, 0, 0, 1627.46, 867.832, -50, 54, 50, -54, 1746.38, 789.345, 0, 0, 0, 0, 1791.57, 594.315, 14, 89, -14, -89, 1772.54, 408.798, 103, 51, -103, -51, 1622.7, 175.714, 0, 0, 0, 0, 1356.32, 121.01, 0, 0, 0, 0, 930.582, 116.253 )
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -21,6 +27,17 @@ autostart = true
 wait_time = 3.0
 autostart = true
 
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 930.582, 116.253 )
+rotation = 3.02148
+
+[node name="Boss" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
+position = Vector2( 0.352783, 0.480713 )
+rotation = 1.5708
+
 [connection signal="timeout" from="Data/Timer" to="Data" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Data/Timer2" to="Data" method="_on_Timer_timeout"]

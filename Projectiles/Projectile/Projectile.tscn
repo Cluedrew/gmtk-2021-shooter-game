@@ -9,7 +9,7 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 960, 0, 160, 160 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": false,
@@ -17,7 +17,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=3]
 radius = 6.63382
 
 [node name="Projectile" type="Area2D"]
@@ -28,13 +28,11 @@ explosionScene = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 z_index = 1
-frames = SubResource( 11 )
-animation = "explode"
+frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+shape = SubResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-
 [connection signal="area_entered" from="." to="." method="_on_Projectile_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

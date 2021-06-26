@@ -1,44 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Images/ship_explosion.png" type="Texture" id=2]
+[ext_resource path="res://AnimatedEffects/ship-explosion.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://AnimatedEffects/ExplosionEffect.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 240, 240 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 240, 0, 240, 240 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 480, 0, 240, 240 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 720, 0, 240, 240 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 960, 0, 240, 240 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "default",
-"speed": 15.0
-} ]
-
 [node name="ShipExplosion" type="AnimatedSprite"]
-frames = SubResource( 6 )
-animation = "ShipExplosion"
+frames = ExtResource( 1 )
 script = ExtResource( 3 )
-
 [connection signal="animation_finished" from="." to="." method="_on_ExplosionEffect_animation_finished"]

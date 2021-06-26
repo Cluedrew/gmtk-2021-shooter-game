@@ -4,7 +4,7 @@
 [ext_resource path="res://Enemy/Grunt.gd" type="Script" id=2]
 [ext_resource path="res://Images/thruster.png" type="Texture" id=3]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -12,27 +12,27 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=2]
 radius = 41.0122
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 20, 0, 20, 20 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 40, 0, 20, 20 )
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 20 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 15.0
@@ -45,24 +45,23 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
-frames = SubResource( 8 )
+frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 9 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 position = Vector2( -45, 19 )
-frames = SubResource( 10 )
-frame = 1
+frames = SubResource( 6 )
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
 position = Vector2( 45, 19 )
-frames = SubResource( 10 )
-frame = 1
+frames = SubResource( 6 )
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 52 )
-frames = SubResource( 10 )
+frames = SubResource( 6 )
+frame = 3
 playing = true

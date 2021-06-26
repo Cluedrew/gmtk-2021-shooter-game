@@ -9,6 +9,8 @@ var invincible = false
 var isFlashingWhite = false
 
 onready var screensize = get_viewport_rect().size
+onready var collision_node = $CollisionShape2D
+onready var sprite_node = $AnimatedSprite
 
 signal out_of_health
 
@@ -33,9 +35,9 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screensize.y)
 	
 	if (isFlashingWhite && invincible):
-		 $AnimatedSprite.modulate = Color(1,1,1,0)
+		sprite_node.modulate = Color(1,1,1,0)
 	else:
-		$AnimatedSprite.modulate = Color(1,1,1,1)
+		sprite_node.modulate = Color(1,1,1,1)
 
 
 func _on_Player_area_entered(area):
@@ -46,15 +48,15 @@ func _on_Player_area_entered(area):
 		if (health <= 0):
 			emit_signal("out_of_health")
 		else:
-			$CollisionShape2D.set_disabled(true)
+			collision_node.set_deferred("disabled", true)
 			invincible = true
 			$InvincibleTimer.start()
-		
+
 
 func _on_FlashTimer_timeout():
 	isFlashingWhite = !isFlashingWhite
-	
+
 
 func _on_InvincibleTimer_timeout():
-	$CollisionShape2D.set_disabled(false)
+	collision_node.set_deferred("disabled", false)
 	invincible = false

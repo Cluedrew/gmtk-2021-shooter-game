@@ -1,3 +1,4 @@
+class_name Enemy
 extends Area2D
 
 export var speed: float = 100

@@ -12,16 +12,17 @@ class SideData:
 		end = end_
 		offset = offset_
 
+enum EnemyIds {
+	GRUNT,
+	CHARGER,
+}
+
 const Grunt = preload("res://Enemy/Grunt.tscn")
 const Charger = preload("res://Enemy/Charger.tscn")
-#const Charger = preload(...)
-const GRUNT_ID := 0
-const CHARGER_ID := 0
 
 var rng := RandomNumberGenerator.new()
+var enemy_counts := [0, 0]
 
-var grunt_count := 0
-var charger_count := 0
 onready var view_size: Vector2 = get_viewport().size
 onready var sides := [
 	SideData.new(Vector2(), Vector2(view_size.x, 0), Vector2(-1, 0)),
@@ -33,25 +34,17 @@ onready var sides := [
 func _ready():
 	rng.randomize()
 
-func register_grunt(grunt):
-	grunt_count += 1
-	grunt.connect("out_of_health", self, "_on_grunt_decrement",
-			[], CONNECT_ONESHOT)
-	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
-
-func _on_grunt_decrement():
-	grunt_count -= 1
-	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
-	
-func register_charger(charger):
-	charger_count += 1
-	charger.connect("out_of_health", self, "_on_charger_decrement",
-			[], CONNECT_ONESHOT)
-	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
-
-func _on_charger_decrement():
-	charger_count -= 1
-	emit_signal("enemy_counts_changed", [grunt_count, charger_count])
+func register_enemy(enemy: Enemy, id: int):
+	if EnemyIds.CHARGER < id:
+		print("register_enemy: out of range: ", id)
+		return
+	enemy_counts[id] += 1
+	var err := enemy.connect("out_of_health",
+			self, "_on_enemy_out_of_health", [id], CONNECT_ONESHOT)
+	if OK != err:
+		print("register_enemy: connect failed: ", err)
+		return
+	emit_signal("enemy_counts_changed", enemy_counts.duplicate())
 
 func get_random_spawn_point(distance: float = 0) -> Vector2:
 	var side_index: int = rng.randi_range(0, 3)
@@ -60,15 +53,19 @@ func get_random_spawn_point(distance: float = 0) -> Vector2:
 			rng.randf_range(side.begin.x, side.end.x),
 			rng.randf_range(side.begin.y, side.end.y))
 
+func _on_enemy_out_of_health(id: int):
+	enemy_counts[id] -= 1
+	emit_signal("enemy_counts_changed", enemy_counts.duplicate())
+
 # This is also "level" code.
 func _on_Timer_timeout():
 	var grunt := Grunt.instance()
 	grunt.position = get_random_spawn_point(16)
 	get_parent().add_child(grunt)
-	register_grunt(grunt)
+	register_enemy(grunt, EnemyIds.GRUNT)
 
 func _on_Timer2_timeout():
 	var charger := Charger.instance()
 	charger.position = get_random_spawn_point(16)
 	get_parent().add_child(charger)
-	register_charger(charger)
+	register_enemy(charger, EnemyIds.CHARGER)

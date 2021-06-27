@@ -4,16 +4,11 @@ const GameOver = preload("res://Misc/GameOver.tscn")
 const WinScreen = preload("res://Misc/WinScreen.tscn")
 
 func _ready():
-	var parent = get_parent()
+	var main = get_parent()
 	var player = $Player
-	var err = player.connect("out_of_health", parent, "change_scene",
-			[GameOver])
-	if OK != err:
-		print("connect failed: ", err)
-	var err2 = $Path2D/PathFollow2D/Boss.connect("out_of_health", parent, "change_scene",
-			[WinScreen])
-	if OK != err2:
-		print("connect failed: ", err)
+	main.will_change_scene(player, "out_of_health", GameOver)
+	var boss = $Path2D/PathFollow2D/Boss
+	main.will_change_scene(boss, "out_of_health", WinScreen)
 
 # TODO: pretty this up.
 var health_label: Label

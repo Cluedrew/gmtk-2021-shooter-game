@@ -10,6 +10,4 @@ func _ready():
 
 	var button: Button = $HBoxContainer/VBoxContainer/Button
 	var main = get_parent()
-	var err = button.connect("pressed", main, "begin_level")
-	if err != OK:
-		print("connect Start Game button: ", err)
+	main.will_change_scene(button, "pressed", main.BasicLevel)

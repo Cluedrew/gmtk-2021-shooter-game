@@ -11,5 +11,5 @@ func _ready():
 	var again = $HBox/VBox/Again
 	var start = $HBox/VBox/StartMenu
 	var parent = get_parent()
-	parent.connect_to_change_scene(again, "pressed", parent.BasicLevel)
-	parent.connect_to_change_scene(start, "pressed", parent.StartMenu)
+	parent.will_change_scene(again, "pressed", parent.BasicLevel)
+	parent.will_change_scene(start, "pressed", parent.StartMenu)
